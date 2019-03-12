@@ -1,0 +1,54 @@
+import os
+def search_word(keydir,keyword):
+    global filelist
+    count = 0
+    os.chdir(keydir)
+    for each in os.listdir():
+        if os.path.isdir(each):
+            search_word(each,keyword)
+            os.chdir(os.pardir)
+        else:
+            if os.path.splitext(each)[1] == '.txt':
+                f = open(each,'r',encoding='utf-8')
+
+                for eachline in f:
+                    if keyword in eachline:
+                        filelist.append(os.getcwd()+os.sep+each)
+                        break
+                f.close()
+
+
+
+
+def search_lineposition(file,keyword):
+    i = 1
+    os.chdir(os.path.dirname(file))
+    f = open(os.path.basename(file),'r')
+    for eachline in f:
+        if keyword in eachline:           
+            search_postion_in_line(keyword, eachline,i)
+        i+=1
+    
+
+
+def search_postion_in_line(keyword, eachline,i):
+    length = len(keyword)
+    position = eachline.find(keyword)
+    while position != -1:
+        print("Find the keyword 【%s】 in line %d at %d"%(keyword,i,position+1))
+        position = eachline.find(keyword,position+length)
+
+keyword = input('Please input the word which you want to find in directory：')
+button = input('Do you want to fine the position of the keyword【%s】(yes/no)：'%keyword)
+os.chdir('/Users/guojin/Documents/A')
+filelist=[]
+position=[]
+
+search_word(os.getcwd(),keyword)
+if filelist:
+    for i in filelist:
+        print("Find the keyword 【%s】in the file【%s】"%(keyword,i))
+        if button == 'yes':
+            search_lineposition(i,keyword)
+
+    
