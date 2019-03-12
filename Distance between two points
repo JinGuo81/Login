@@ -1,0 +1,31 @@
+import random
+import math
+
+
+class Point:
+    def __init__(self):
+        self.x = random.randint(0,100)
+        self.y = random.randint (0,100)
+    def getX(self):
+        print(self.x)
+        return self.x
+    def getY(self):
+        print(self.y)
+        return self.y
+
+
+class Line():
+    def __init__(self,p1,p2):
+        self.x = p1.getX()-p2.getX()
+        self.y = p1.getY()-p2.getY()
+        self.len = math.sqrt(self.x*self.x + self.y*self.y)
+
+    def getLen(self):
+        print(self.len)
+        return self.len
+
+
+p1 = Point()
+p2 = Point()
+line = Line(p1,p2)
+line.getLen
