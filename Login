@@ -1,0 +1,36 @@
+print('|---Creat a new account：N/n---|')
+print('|---Loggin：E/e---|')
+print('|---Quit：Q/q---|')
+
+code = input('|---please input the request:')
+while code not in 'neqNEQ':
+    code = input('|---Wrong input，please input a new request:')
+
+dict1 = {}
+while code != 'q' and code != 'Q':
+    if code  == 'N' or code =='n':
+        key  = input('usename：')
+        if dict1.get(key) == None:
+            dict1[key] = input('password：')
+            print('resigist successfully,please loggin^-^')
+        else:
+            while key in dict1:
+                key = input('This usename used，try a new usename:')
+            dict1[key] = input('password：')
+            print('resigist successfully,please loggin^-^')
+    elif code  == 'E' or code =='e':
+        key  = input('usename：')
+        while dict1.get(key,'not exist') == 'not exist':
+            key = input('not exitst，please input a new one：')
+        password = input('password：')               
+        while dict1[key] != password:
+            password = input('wrong password, try again：') 
+
+        print('Welcome to xxoo system，please click x upper right corner to cancel the program！')
+    code = input('|---please input the request:')
+    while code not in 'neqNEQ':
+        code = input('|---Wrong input，please input a new request:')
+
+if code == 'q' or code == 'Q':
+    print('Quit！')
+
